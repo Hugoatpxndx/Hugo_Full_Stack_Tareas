@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!-- Pongo head para los metadatos de la página  -->
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Viewport hace que la página se vea bien en celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+    <!-- Título que se ve en la pestaña del navegador -->
+    <title>Doordasher</title>
+
+    <!-- Conecto este archivo HTML con la hoja CSS para darle diseño -->
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <!-- En body va todo lo que el usuario ve en la pantalla -->
+  <body>
+    <!-- Uso header para poner cierto información en la parte superior de la página y separarla del resto del cuerpo-->
+    <header>
+      <div class ="header"> <!-- Uso el contenedor genérico div con una clase que hice header para estilos CSS -->
+        <!-- Sección Principal -->
+        <h1 id="titulo-principal">DOORDASHER</h1> <!-- Título principal en H1 con un ID único -->
+        <p class="slogan">Todo a tu puerta a la velocidad más puesta.</p> <!-- Párrafo con clase slogan -->
+        <div class="logo"> <!-- Contenedor div para el logo -->
+        <img src="C:\Users\david\OneDrive\Documents\GitHub\Hugo_Full_Stack_Tareas\Actividad_1\img\Logo.png" 
+        alt="Logo" width="400">
+        </div>
+        <div class="MisionVision"> <!-- Contenedor para los textos que hice de misión y visión -->
+          <p> <!-- Inicio de párrafo -->
+          <!-- Puse mision y vision en negritas y use "br" que hace un salto de línea -->
+          <strong>Misión:</strong> Revolucionar el comercio con rutas inteligentes y entregas ultra-rápidas.<br>
+          <strong>Visión:</strong> Ser la infraestructura que mueva el comercio en todo México.
+          </p> <!-- Cierre de párrafo -->
+        </div>
+          <!-- Descripción general -->
+          <p class="descripcion">Somos una empresa dedicada a ofrecer servicios de entrega rápida y eficiente en todo México, 
+          tomando enfoque en ayudar a las empresas chicas a crecer.
+          </p> 
+        </div>
+      </div>
+    </header>
+
+    <!-- Pongo una clase para juntar toda una sección en un cuadro más chico -->
+    <section class="card">
+      <div class="ProyectosTitulo"> <!-- Clase para el título de la sección proyectos -->
+      <h2>Nuestros Proyectos</h2> <!-- Subtítulo CON H2 -->
+      </div>
+      <div class="proyecto"> <!-- Clase para el proyecto, con su texto y las imágenes. Lo repito en los tres proyectos -->
+        <h3>Amplia librería de productos</h3> <!-- Título en H3 -->
+        <p>Hemos estado y seguimos trabajando en un catálogo extenso para satisfacer todas tus necesidades al instante, desde alimentos hasta tecnología.</p>
+        <div class ="imgproyectos"> <!-- Clase para centrar la imagen, de igual forma la uso en las tres imágenes -->
+        <img src="C:\Users\david\OneDrive\Documents\GitHub\Hugo_Full_Stack_Tareas\Actividad_1\img\Libreria.png" alt="Librería de productos" width="300">
+        </div>
+      </div>
+      <div class="proyecto">
+        <h3>Apoyo a empresas chicas</h3>
+        <p>Impulsamos el crecimiento de negocios locales proporcionando herramientas logísticas y tarifas preferenciales para empresas pequeñas.</p>
+        <div class ="imgproyectos">
+        <img src="C:\Users\david\OneDrive\Documents\GitHub\Hugo_Full_Stack_Tareas\Actividad_1\img\apoyo.png" alt="Apoyo a empresas chicas" width="300">
+        </div>
+      </div>
+      <div class="proyecto">
+        <h3>Smart Delivery AI</h3>
+        <p>Nuestra inteligencia artificial analiza el tráfico en tiempo real para garantizar las rutas más rápidas y eficientes.</p>
+        <div class ="imgproyectos">
+        <img src="C:\Users\david\OneDrive\Documents\GitHub\Hugo_Full_Stack_Tareas\Actividad_1\img\Trafico.png" alt="Smart Delivery AI" width="300">
+        </div>
+      </div>
+
+      <!-- Form crea un formulario para que el usuario ingrese datos -->
+      <form>
+        <h2 class="FormTitulo">¡Contacta con nosotros!</h2> <!-- Título dentro del formulario en H2 -->
+
+        <div class="form"> <!-- Clase de los campos del formulario -->
+          <label for="nombre">Nombre:</label> <!-- Etiqueta para el campo nombre -->
+          <input type="text" id="nombre" name="nombre" required /><br /><br /> <!-- Aqui se ingresa el texto y lo hago obligatorio -->
+
+          <label for="email">Correo Electrónico:</label> <!-- Etiqueta para el email -->
+          <input type="email" id="email" name="email" required /><br /><br />
+
+          <label for="mensaje">Mensaje:</label> <!-- Etiqueta para el mensaje -->
+          <textarea id="mensaje" name="mensaje" required></textarea><br /><br /> <!-- Área de texto multilínea -->
+
+          <div class="form-checkbox"> <!-- Clase para un checkbox de términos y condiciones -->
+          <input type="checkbox" id="terminos" name="terminos" /> <!-- Casilla de verificación -->
+          <label for="terminos">Acepto los términos y condiciones</label> <!-- Texto junto a la casilla -->
+
+          <input type="submit" value="Enviar" class="boton" /> <!-- Botón para el formulario -->
+        </div>
+      </form>
+    </section>
+
+    <!-- Pongo aquí el pie de página -->
+    <footer class ="footer"> 
+      <p>&copy; 2026 Doordasher. Todos los derechos reservados.</p> <!-- Símbolo de copyright -->
+      Redes Sociales:
+      <a href="https://www.facebook.com" target="_blank">Facebook</a> <!-- Enlace externo y _blank abre nueva pestaña -->
+      <a href="https://www.instagram.com" target="_blank">Instagram</a>
+      <a href="https://www.twitter.com" target="_blank">Twitter</a>
+      <p>Correo: doordasher@gmail.com | Tel: (81) 1234-5678</p> <!-- Datos de contacto -->
+    </footer>
+  </body>
+</html>

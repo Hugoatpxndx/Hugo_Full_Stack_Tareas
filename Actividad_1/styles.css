@@ -1,0 +1,181 @@
+/* En body aplico estilos a toda la página visible */
+body {
+    font-family: 'Arial', sans-serif; /* Pongo que la fuente sea Arial */
+    background-color: #100b4a; /* Establece el fondo azul oscuro para toda la página */
+    margin: 0; /* Elimina el margen exterior por defecto que traen los navegadores */
+    padding: 0; /* Elimina el relleno interior por defecto */
+    font-size: large; /* Define el tamaño base de la letra como grande */
+}
+
+/* Selecciono el título principal */
+#titulo-principal { /* El # selecciona los elementos por su ID */
+    color: #100b4a; /* Texto azul oscuro */
+    text-align: center; /* Alinea el texto al centro */
+    margin-top: 30px; /* Agrega espacio arriba del título */
+    margin-bottom: 10px; /* Agrega espacio debajo del título */
+    font-size: 80px; /* Tamaño de fuente muy grande */
+    font-weight: bold; /* Hace que el texto se vea en negrita */
+}
+
+/* Parrafo de descripción */
+.slogan { /* El punto selecciona elementos por su clase */
+    color: #100b4a; /* Color azul oscuro */
+    text-align: center; /* Alineación centrada */
+    font-size: 16px; /* Tamaño de fuente chica */
+}
+
+/* Estilos para el encabezado */
+.header {
+    margin-top: 60px; /* Espacio arriba */
+    margin-bottom: 60px; /* Espacio abajo */
+    text-align: center; /* Centra el contenido */
+    background-color: #fa9600; /* Color de fondo naranja */
+    color: #100b4a; /* Color de texto azul */
+    padding: 10px 0; /* Relleno: 10px arriba y abajo, 0 a los lados */
+}
+
+/* Estilos para el logo */
+.descripcion {
+    color: #100b4a; /* Color del texto */
+    font-size: 18px; /* Tamaño de letra */
+    text-align: center; /* Centrado */
+    margin-bottom: 20px; /* Espacio debajo del párrafo */
+}
+
+/* Estilos para el card que contiene los proyectos */
+.card {
+    background-color: rgb(143, 156, 228); /* Color de fondo lila claro */
+    margin: 20px auto; /* 20px vertical, 'auto' horizontal centra la tarjeta */
+    padding: 20px; /* Espacio interno entre el borde y el contenido */
+    width: 80%; /* La tarjeta ocupa el 80% del ancho de la pantalla */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Estilos para botones */
+.boton {
+    display: inline-block; /* Para ponerle márgenes y padding a un enlace */
+    background-color: #100b4a; /* Fondo azul */
+    color: white; /* Texto blanco */
+    padding: 10px 15px; /* Relleno */
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 5px; /* Bordes un poco redondeados */
+}
+
+/* Define qué pasa cuando el mouse pasa por encima del boton */
+.boton:hover{
+    background-color: #fa9600; /* Cambia el fondo a naranja al pasar el mouse */
+}
+
+.logo {
+  display: flex; /* Activa el modelo Flexbox que sirve para alinear elementos */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  margin-top: 20px; /* Espacio arriba */
+  margin-bottom: 20px; /* Espacio abajo */
+}
+
+form {
+    background-color: rgb(222, 209, 250); /* Fondo morado claro para el formulario */
+    padding: 20px; /* Espacio interno */
+    border-radius: 8px; /* Bordes redondeados */
+    width: 80%; /* Ancho del formulario adentro del card */
+    margin: 20px auto; /* Centrado horizontalmente */
+}
+
+label {
+    display: block; /* Hace que la etiqueta ocupe toda la línea */
+    margin-bottom: 10px; /* Espacio debajo de la etiqueta */
+}
+
+.FormTitulo {
+    text-align: center; /* Centra el título del formulario */
+    color: #000000; /* Color negro */
+    font-size: 24px; /* Tamaño de letra */
+    margin-bottom: 20px; /* Espacio debajo */
+}
+
+input[type="text"],
+input[type="email"],
+textarea { /* Aplica estilos a campos de texto, email y áreas de texto */
+    width: 40%; /* Ancho dntro del contenedor */
+    padding: 8px; /* Espacio para escribir cómodamente */
+    margin-bottom: 15px; /* Espacio debajo de cada campo */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 4px; /* Bordes suaves */
+    display: block; /* Hace que cada campo ocupe su propia línea */
+}
+
+.MisionVision {
+    color: #100b4a; /* Color azul */
+    font-size: 16px; /* Tamaño de letra */
+    text-align: center; /* Centrado */
+}
+
+
+.footer {
+    background-color: #100b4a; /* Fondo azul oscuro */
+    color: white; /* Texto blanco */
+    text-align: center; /* Texto centrado */
+    padding: 10px 0; /* Relleno vertical */
+    margin-top: 20px; /* Separación superior */
+}
+
+.ProyectosTitulo {
+    text-align: center; /* Centrado */
+    color: #000000; /* Negro */
+    font-size: 30px; /* Tamaño grande */
+    margin-top: 20px; /* Espacio arriba */
+}
+
+.proyecto {
+    text-align: center; /* Centra todo el contenido dentro de un proyecto */
+}
+
+/* Aquí hacemos que las imágenes de los proyectos estén centradas */
+.imgproyectos {
+    display: flex; /* Usa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Estilos Responsivos */
+/* @media permite cambiar estilos según el tamaño de la pantalla */
+@media (max-width: 760px) { /* Solo aplican si la pantalla es menor a 760px */
+    #titulo-principal {
+        font-size: 40px; /* Reduce el tamaño del título para que quepa en celular */
+    }
+    .header {
+        font-size: medium; /* Ajusta el tamaño de fuente */
+        margin-top: 20px; /* Reduce márgenes */
+        margin-bottom: 20px;
+    }
+    .card {
+        width: 90%; /* Hace la tarjeta más ancha para aprovechar la pantalla pequeña */
+        padding: 10px; /* Reduce el relleno */
+    }
+    .descripcion {
+        font-size: medium; /* Ajusta tamaño de letra */
+    }
+    .logo img {
+        width: 200px; /* Hago el logo más pequeño */
+    }
+    img {
+        max-width: 100%; /* Asegura que ninguna imagen sea más ancha que su contenedor */
+        height: auto; /* Mantiene la proporción de la imagen */
+    }
+    form {
+        width: 85%; /* El formulario ocupa casi todo el ancho */
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 95%; /* Los campos de texto ocupan casi todo el ancho que hay */
+        padding: 8px; /* Relleno */
+        margin-bottom: 15px; /* Margen */
+        border: 1px solid #ccc; /* Borde */
+        border-radius: 4px; /* Bordes redondeados */
+    }
+    body {
+        font-size: medium; /* Ajusta el tamaño de la letra */
+    }
+}
