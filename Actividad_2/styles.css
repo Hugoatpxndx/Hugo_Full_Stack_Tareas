@@ -1,0 +1,143 @@
+/* Aquí pongo los estilos básicos para toda la página, como la fuente y el fondo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+/* Este es el contenedor principal (la tarjeta blanca) */
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 { color: #333; }
+
+/* Agrupo el input y el botón para que se vean juntos */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo general para los botones */
+button {
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+button:hover { background-color: #218838; }
+
+/* Aquí le quito los puntos a la lista y le doy espacio */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Estilo de cada tarea individual en la lista */
+li {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cuando la tarea está completa, tacho el texto y lo pongo gris */
+.completada span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Colores específicos para los botones de editar y eliminar */
+.btn-editar {
+    background-color: #ffc107;
+    color: #333;
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+/* Estilo para el mensaje de error en rojo */
+.mensaje-error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    /* No le pongo display aquí para poder ocultarlo fácilmente */
+}
+
+/* Esta clase es importante: la uso para esconder elementos y uso !important para asegurar que nadie la sobrescriba */
+.oculto {
+    display: none !important;
+}
+
+/* ESTILOS PARA CELULARES */
+
+/* Aquí uso @media para cambiar el diseño solo cuando la pantalla es pequeña (como un celular) */
+@media (max-width: 600px) {
+    body {
+        padding-top: 10px; /* Quito espacio arriba para aprovechar mejor la pantalla chica */
+    }
+
+    .container {
+        width: 95%; /* Hago que la tarjeta ocupe casi todo el ancho disponible */
+        padding: 15px; /* Reduzco un poco el relleno interno */
+    }
+
+    .input-group {
+        flex-direction: column; /* Pongo la caja de texto arriba y el botón abajo para que quepan mejor */
+    }
+
+    button {
+        width: 100%; /* Hago que el botón ocupe todo el ancho para que sea fácil de tocar con el dedo */
+        padding: 15px; /* Lo hago más alto para mejorar el área táctil */
+        font-size: 1rem; /* Letra un poco más grande */
+    }
+
+    li {
+        flex-direction: column; /* Si la tarea es larga, pongo los botones en una fila nueva abajo */
+        align-items: flex-start; /* Alineo todo a la izquierda */
+    }
+
+    li div {
+        width: 100%; /* El contenedor de botones ocupa todo el ancho */
+        display: flex; /* Uso flex para acomodar los botones de editar y eliminar */
+        margin-top: 10px; /* Espacio entre el texto de la tarea y los botones */
+        gap: 10px; /* Espacio entre los botones */
+    }
+
+    .btn-editar, .btn-eliminar {
+        flex: 1; /* Hago que ambos botones midan lo mismo y sean grandes */
+        padding: 12px; /* Relleno generoso para dedos grandes */
+        margin: 0; /* Quito márgenes extra */
+    }
+}
