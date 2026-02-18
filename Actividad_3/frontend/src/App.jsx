@@ -15,7 +15,7 @@ function App() {
     <div className="app-container">
       <header>
         <div>
-          <h1>🚑 MediTrack <span className="brand-highlight">Pro</span></h1>
+          <h1>MediTrack <span className="brand-highlight">Pro</span></h1>
           <small className="subtitle">Sistema de Gestión Hospitalaria</small>
         </div>
         {token && <button onClick={logout} className="btn-logout">Cerrar Sesión</button>}
