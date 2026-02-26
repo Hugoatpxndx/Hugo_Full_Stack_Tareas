@@ -6,16 +6,11 @@
     <title>Biblioteca - Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,13 +20,11 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(79, 172, 254, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -39,36 +32,28 @@
             background: #ffffff;
             padding: 50px 55px;
             border-radius: 30px;
-            box-shadow: 
-                0 30px 60px -12px rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
             width: 100%;
             max-width: 520px;
             position: relative;
-            overflow: hidden;
         }
 
         .container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 6px;
-            background: linear-gradient(90deg, #e94560, #4facfe, #00f2fe);
+            background: linear-gradient(90deg, #9333ea, #a855f7, #c084fc, #9333ea);
         }
 
-        .logo {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .logo { text-align: center; margin-bottom: 40px; }
 
         .logo-icon {
             font-size: 85px;
             margin-bottom: 20px;
             display: block;
             animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.25));
+            filter: drop-shadow(0 15px 25px rgba(147, 51, 234, 0.3));
         }
 
         @keyframes float {
@@ -78,7 +63,7 @@
 
         h1 {
             text-align: center;
-            color: #0c0c0c;
+            color: #1a0a2e;
             font-size: 38px;
             font-weight: 800;
             margin-bottom: 10px;
@@ -86,16 +71,13 @@
 
         .subtitle {
             text-align: center;
-            color: #444;
+            color: #666;
             font-size: 17px;
             margin-bottom: 40px;
             font-weight: 500;
         }
 
-        .form-group {
-            margin-bottom: 28px;
-            position: relative;
-        }
+        .form-group { margin-bottom: 28px; }
 
         label {
             display: block;
@@ -111,81 +93,37 @@
             border: 3px solid #e0e0e0;
             border-radius: 16px;
             font-size: 17px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
             background: #fafafa;
             color: #111;
         }
 
-        input::placeholder {
-            color: #888;
-        }
+        input::placeholder { color: #888; }
 
         input:focus {
             outline: none;
-            border-color: #4facfe;
-            background: #fff;
-            box-shadow: 0 0 0 6px rgba(79, 172, 254, 0.15);
+            border-color: #9333ea;
+            box-shadow: 0 0 0 6px rgba(147, 51, 234, 0.15);
             transform: translateY(-3px);
         }
 
         button {
             width: 100%;
             padding: 20px;
-            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
             color: white;
             border: none;
             border-radius: 16px;
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
             margin-top: 18px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
         }
 
         button:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.4);
-        }
-
-        button:hover::before {
-            left: 100%;
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 32px 0;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: #e0e0e0;
-        }
-
-        .divider span {
-            padding: 0 20px;
-            color: #666;
-            font-size: 14px;
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.4);
         }
 
         .register-link {
@@ -197,16 +135,12 @@
         }
 
         .register-link a {
-            color: #e94560;
+            color: #9333ea;
             text-decoration: none;
             font-weight: 700;
-            transition: all 0.3s;
         }
 
-        .register-link a:hover {
-            color: #0f3460;
-            text-decoration: underline;
-        }
+        .register-link a:hover { text-decoration: underline; }
 
         .error, .success {
             padding: 16px 22px;
@@ -214,80 +148,24 @@
             margin-bottom: 26px;
             font-size: 15px;
             display: none;
-            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 600;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .error {
-            background: linear-gradient(135deg, #ffebee, #ffcdd2);
-            color: #c62828;
-            border-left: 5px solid #c62828;
+            background: #fef2f2;
+            color: #dc2626;
+            border-left: 5px solid #dc2626;
         }
 
         .success {
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            color: #2e7d32;
-            border-left: 5px solid #2e7d32;
-        }
-
-        .decorative-circles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-        }
-
-        .circle-1 {
-            width: 140px;
-            height: 140px;
-            background: #e94560;
-            top: -50px;
-            right: -50px;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .circle-2 {
-            width: 80px;
-            height: 80px;
-            background: #4facfe;
-            bottom: -30px;
-            left: -30px;
-            animation: pulse 4s ease-in-out infinite 2s;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.1; }
-            50% { transform: scale(1.15); opacity: 0.15; }
+            background: #f0fdf4;
+            color: #16a34a;
+            border-left: 5px solid #16a34a;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="decorative-circles">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-        </div>
-
         <div class="logo">
             <span class="logo-icon">📚</span>
             <h1>Biblioteca</h1>
@@ -378,7 +256,7 @@
                     showMessage(data.error || 'Credenciales incorrectas');
                 }
             } catch (err) {
-                showMessage('Error de conexión. ¿Está el servidor funcionando?');
+                showMessage('Error de conexión');
             }
         });
 

@@ -3,10 +3,10 @@ const db = require('../config/db');
 const libroController = {
     getAll: async (req, res) => {
         try {
-            const [rows] = await db.execute('SELECT * FROM libros ORDER BY created_at DESC');
+            const [rows] = await db.execute('SELECT * FROM libros');
             res.json({ libros: rows });
         } catch (error) {
-            res.status(500).json({ error: 'Error al obtener los libros' });
+            res.status(500).json({ error: 'Error al obtener libros' });
         }
     },
 
@@ -37,9 +37,6 @@ const libroController = {
             );
             res.status(201).json({ mensaje: 'Libro creado exitosamente', id: result.insertId });
         } catch (error) {
-            if (error.code === 'ER_DUP_ENTRY') {
-                return res.status(400).json({ error: 'El ISBN ya está registrado' });
-            }
             res.status(500).json({ error: 'Error al crear el libro' });
         }
     },
@@ -49,18 +46,16 @@ const libroController = {
         const { titulo, autor, isbn, cantidad } = req.body;
 
         try {
-            const [existing] = await db.execute('SELECT * FROM libros WHERE id = ?', [id]);
-            if (existing.length === 0) {
-                return res.status(404).json({ error: 'Libro no encontrado' });
-            }
-
-            const disponible = cantidad !== undefined ? cantidad : existing[0].disponible;
-
-            await db.execute(
-                'UPDATE libros SET titulo = ?, autor = ?, isbn = ?, cantidad = ?, disponible = ? WHERE id = ?',
-                [titulo || existing[0].titulo, autor || existing[0].autor, isbn || existing[0].isbn, cantidad || existing[0].cantidad, disponible, id]
+            // Nota: Esta es una actualización simple. En un caso real, si cambias la cantidad total,
+            // deberías ajustar 'disponible' acorde a la diferencia.
+            const [result] = await db.execute(
+                'UPDATE libros SET titulo = ?, autor = ?, isbn = ?, cantidad = ? WHERE id = ?',
+                [titulo, autor, isbn, cantidad, id]
             );
 
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ error: 'Libro no encontrado' });
+            }
             res.json({ mensaje: 'Libro actualizado exitosamente' });
         } catch (error) {
             res.status(500).json({ error: 'Error al actualizar el libro' });
@@ -69,14 +64,11 @@ const libroController = {
 
     delete: async (req, res) => {
         const { id } = req.params;
-
         try {
-            const [existing] = await db.execute('SELECT * FROM libros WHERE id = ?', [id]);
-            if (existing.length === 0) {
+            const [result] = await db.execute('DELETE FROM libros WHERE id = ?', [id]);
+            if (result.affectedRows === 0) {
                 return res.status(404).json({ error: 'Libro no encontrado' });
             }
-
-            await db.execute('DELETE FROM libros WHERE id = ?', [id]);
             res.json({ mensaje: 'Libro eliminado exitosamente' });
         } catch (error) {
             res.status(500).json({ error: 'Error al eliminar el libro' });

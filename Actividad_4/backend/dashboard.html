@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #0f3460 100%);
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 28px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .logo-icon {
+            font-size: 42px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0c0c0c;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .user-name {
+            color: #111;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(233, 69, 96, 0.35);
+        }
+
+        .main {
+            padding: 50px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 22px;
+            padding: 32px 38px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .stat-label {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .nav {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            padding: 20px 40px;
+            border-radius: 18px;
+            font-size: 17px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            color: white;
+            border: none;
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.35);
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .table-container {
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #0c0c0c, #1a1a2e);
+            color: white;
+            padding: 22px 24px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 22px 24px;
+            border-bottom: 1px solid #eee;
+            color: #111;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .badge-info {
+            background: #2196f3;
+            color: white;
+        }
+
+        .badge-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 30px;
+            color: #666;
+        }
+
+        .empty-icon {
+            font-size: 70px;
+            margin-bottom: 25px;
+        }
+
+        .empty-text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            padding: 80px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.35);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span class="logo-icon">📚</span>
+            <span class="logo-text">Biblioteca</span>
+        </div>
+        <div class="user-info">
+            <span id="user-name" class="user-name">👤 Usuario</span>
+            <button class="logout-btn" onclick="logout()">🚪 Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-number" id="total-libros">0</div>
+                <div class="stat-label">📖 Libros Registrados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="prestamos-activos">0</div>
+                <div class="stat-label">📋 Préstamos Activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="disponibles">0</div>
+                <div class="stat-label">✅ Disponibles</div>
+            </div>
+        </div>
+
+        <div class="nav">
+            <button class="nav-btn active" onclick="showVista('libros')">📖 Gestión de Libros</button>
+            <button class="nav-btn" onclick="showVista('prestamos')">📋 Gestión de Préstamos</button>
+        </div>
+
+        <div id="libros-section">
+            <div class="section-header">
+                <h2 class="section-title">📖 Gestión de Libros</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>ISBN</th>
+                            <th>Cantidad</th>
+                            <th>Disponibles</th>
+                        </tr>
+                    </thead>
+                    <tbody id="libros-tbody">
+                        <tr>
+                            <td colspan="6" class="loading">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="prestamos-section" style="display: none;">
+            <div class="section-header">
+                <h2 class="section-title">📋 Gestión de Préstamos</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Libro</th>
+                            <th>Fecha Préstamo</th>
+                            <th>Fecha Devolución</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prestamos-tbody">
+                        <tr>
+                            <td colspan="6" class="loading">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+
+        function getToken() {
+            return localStorage.getItem('token');
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/';
+        }
+
+        function showVista(vista) {
+            document.getElementById('libros-section').style.display = vista === 'libros' ? 'block' : 'none';
+            document.getElementById('prestamos-section').style.display = vista === 'prestamos' ? 'block' : 'none';
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        async function fetchLibros() {
+            try {
+                const res = await fetch(`${API_URL}/libros`, {
+                    headers: { 'Authorization': `Bearer ${getToken()}` }
+                });
+                const data = await res.json();
+                
+                if (res.ok) {
+                    const tbody = document.getElementById('libros-tbody');
+                    document.getElementById('total-libros').textContent = data.libros.length;
+                    document.getElementById('disponibles').textContent = data.libros.reduce((acc, l) => acc + l.disponible, 0);
+                    
+                    if (data.libros.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-icon">📚</div><p class="empty-text">No hay libros registrados</p></td></tr>';
+                    } else {
+                        tbody.innerHTML = data.libros.map(libro => `
+                            <tr>
+                                <td style="font-weight: 700">#${libro.id}</td>
+                                <td style="font-weight: 600">${libro.titulo}</td>
+                                <td>${libro.autor}</td>
+                                <td>${libro.isbn || '-'}</td>
+                                <td>${libro.cantidad}</td>
+                                <td><span class="badge ${libro.disponible > 0 ? 'badge-success' : 'badge-danger'}">${libro.disponible}</span></td>
+                            </tr>
+                        `).join('');
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function fetchPrestamos() {
+            try {
+                const res = await fetch(`${API_URL}/prestamos`, {
+                    headers: { 'Authorization': `Bearer ${getToken()}` }
+                });
+                const data = await res.json();
+                
+                if (res.ok) {
+                    const tbody = document.getElementById('prestamos-tbody');
+                    const activos = data.prestamos.filter(p => p.estado === 'activo').length;
+                    document.getElementById('prestamos-activos').textContent = activos;
+                    
+                    if (data.prestamos.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-icon">📋</div><p class="empty-text">No hay préstamos registrados</p></td></tr>';
+                    } else {
+                        tbody.innerHTML = data.prestamos.map(prestamo => `
+                            <tr>
+                                <td style="font-weight: 700">#${prestamo.id}</td>
+                                <td>${prestamo.usuario_nombre}</td>
+                                <td style="font-weight: 600">${prestamo.libro_titulo}</td>
+                                <td>${prestamo.fecha_prestamo}</td>
+                                <td>${prestamo.fecha_devolucion}</td>
+                                <td><span class="badge badge-${prestamo.estado === 'activo' ? 'success' : prestamo.estado === 'devuelto' ? 'info' : 'danger'}">${prestamo.estado}</span></td>
+                            </tr>
+                        `).join('');
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function init() {
+            const token = getToken();
+            if (!token) {
+                window.location.href = '/';
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            document.getElementById('user-name').textContent = '👤 ' + (user.nombre || 'Usuario');
+
+            await Promise.all([fetchLibros(), fetchPrestamos()]);
+        }
+
+        init();
+    </script>
+</body>
+</html>

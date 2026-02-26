@@ -1,39 +1,61 @@
-// src/pages/Login.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 const Login = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isRegister, setIsRegister] = useState(false);
+    const [nombre, setNombre] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            // Hacemos la petición al backend (asumiendo que harás la ruta /api/auth/login después)
-            const response = await api.post('/auth/login', { username, password });
-            
-            // Guardamos el token en el almacenamiento del navegador
+            const response = await api.post('/auth/login', { email, password });
             localStorage.setItem('token', response.data.token);
-            
-            // Redirigimos al panel principal
+            localStorage.setItem('user', JSON.stringify(response.data.usuario));
             navigate('/dashboard');
         } catch (error) {
-            alert('Error al iniciar sesión. Verifica tus credenciales.');
+            const msg = error?.response?.data?.error || error?.response?.data?.mensaje || error.message || 'Error al iniciar sesión.';
+            alert(msg);
+        }
+    };
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+            await api.post('/auth/register', { nombre, email, password });
+            alert('Registro exitoso. Ahora puedes iniciar sesión.');
+            setIsRegister(false);
+        } catch (error) {
+            const msg = error?.response?.data?.error || error?.response?.data?.mensaje || error.message || 'Error al registrarse.';
+            alert(msg);
         }
     };
 
     return (
         <div style={{ padding: '50px', maxWidth: '400px', margin: '0 auto' }}>
-            <h2>NetSupport - Acceso</h2>
-            <form onSubmit={handleLogin}>
+            <h2>📚 Biblioteca - {isRegister ? 'Registro' : 'Login'}</h2>
+            <form onSubmit={isRegister ? handleRegister : handleLogin}>
+                {isRegister && (
+                    <div>
+                        <label>Nombre:</label>
+                        <input 
+                            type="text" 
+                            value={nombre} 
+                            onChange={(e) => setNombre(e.target.value)} 
+                            required 
+                        />
+                        <br /><br />
+                    </div>
+                )}
                 <div>
-                    <label>Usuario Técnico:</label>
+                    <label>Email:</label>
                     <input 
-                        type="text" 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
                         required 
                     />
                 </div>
@@ -48,8 +70,17 @@ const Login = () => {
                     />
                 </div>
                 <br />
-                <button type="submit">Entrar al Sistema</button>
+                <button type="submit">{isRegister ? 'Registrarse' : 'Iniciar Sesión'}</button>
             </form>
+            <p style={{ marginTop: '15px' }}>
+                {isRegister ? '¿Ya tienes cuenta? ' : '¿No tienes cuenta? '}
+                <button 
+                    onClick={() => setIsRegister(!isRegister)} 
+                    style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer', textDecoration: 'underline' }}
+                >
+                    {isRegister ? 'Inicia sesión' : 'Regístrate'}
+                </button>
+            </p>
         </div>
     );
 };
